@@ -1,0 +1,2 @@
+DataProvider: mongodb
+DataConnectionString: mongodb://gobdroot:Beattraffic1@gofetch.cloudapp.net:27017/taskcatdev

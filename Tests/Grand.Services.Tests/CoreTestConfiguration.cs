@@ -35,7 +35,7 @@ using MongoDB.Driver.Core.WireProtocol.Messages.Encoders;
 using NUnit.Framework;
 using Grand.Services.Tests;
 using MongoDB.Driver;
-
+using Grand.Core.Data;
 
 namespace Grand.Services.Tests {
     public static class CoreTestConfiguration {
@@ -167,13 +167,13 @@ namespace Grand.Services.Tests {
 
         public static CollectionNamespace GetCollectionNamespaceForTestFixture() {
             var testFixtureType = GetTestFixtureTypeFromCallStack();
-            var collectionName = TruncateCollectionNameIfTooLong(__databaseNamespace, testFixtureType.Name);
+            var collectionName = TruncateCollectionNameIfTooLong(__databaseNamespace, testFixtureType.GetCollectionName());
             return new CollectionNamespace(__databaseNamespace, collectionName);
         }
 
         public static CollectionNamespace GetCollectionNamespaceForTestMethod() {
             var testMethodInfo = GetTestMethodInfoFromCallStack();
-            var collectionName = TruncateCollectionNameIfTooLong(__databaseNamespace, testMethodInfo.DeclaringType.Name + "-" + testMethodInfo.Name);
+            var collectionName = TruncateCollectionNameIfTooLong(__databaseNamespace, testMethodInfo.DeclaringType.GetCollectionName() + "-" + testMethodInfo.Name);
             return new CollectionNamespace(__databaseNamespace, collectionName);
         }
 

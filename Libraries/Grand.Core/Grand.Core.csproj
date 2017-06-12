@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\GrandConfig.cs" />
+    <Compile Include="Data\CollectionExtensions.cs" />
     <Compile Include="Domain\Catalog\ProductDeleted.cs" />
     <Compile Include="Domain\Catalog\RecentlyViewedProduct.cs" />
     <Compile Include="Domain\Common\GenericAttributeBaseEntity.cs" />

@@ -60,7 +60,7 @@ namespace Grand.Services.Common
             if (key == null)
                 throw new ArgumentNullException("key");
 
-            string keyGroup = entity.GetType().Name;
+            string keyGroup = entity.GetType().GetCollectionName();
 
             var collection = _baseRepository.Database.GetCollection<GenericAttributeBaseEntity>(keyGroup);
             var query = _baseRepository.Database.GetCollection<GenericAttributeBaseEntity>(keyGroup).AsQueryable();
@@ -116,7 +116,7 @@ namespace Grand.Services.Common
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
-            var collection = _genericattributeBaseEntitRepository.Database.GetCollection<GenericAttributeBaseEntity>(entity.GetType().Name).AsQueryable();
+            var collection = _genericattributeBaseEntitRepository.Database.GetCollection<GenericAttributeBaseEntity>(entity.GetType().GetCollectionName()).AsQueryable();
 
             var props = collection.Where(x => x.Id == entity.Id).SelectMany(x => x.GenericAttributes).ToList();
             if (props == null)

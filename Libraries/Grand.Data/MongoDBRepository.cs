@@ -54,7 +54,7 @@ namespace Grand.Data
             var client = new MongoClient(connectionString);
             var databaseName = new MongoUrl(connectionString).DatabaseName;
             _database = client.GetDatabase(databaseName);
-            _collection = _database.GetCollection<T>(typeof(T).Name);
+            _collection = _database.GetCollection<T>(typeof(T).GetCollectionName());
         }
 
         public MongoDBRepository(IMongoClient client)
@@ -62,13 +62,13 @@ namespace Grand.Data
             string connectionString = DataSettingsHelper.ConnectionString();
             var databaseName = new MongoUrl(connectionString).DatabaseName;            
             _database = client.GetDatabase(databaseName);
-            _collection = _database.GetCollection<T>(typeof(T).Name);
+            _collection = _database.GetCollection<T>(typeof(T).GetCollectionName());
         }
 
         public MongoDBRepository(IMongoClient client, IMongoDatabase mongodatabase)
         {
             _database = mongodatabase;
-            _collection = _database.GetCollection<T>(typeof(T).Name);
+            _collection = _database.GetCollection<T>(typeof(T).GetCollectionName());
         }
 
         #endregion
